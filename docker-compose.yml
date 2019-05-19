@@ -1,0 +1,52 @@
+version: '3'
+services:
+    web:
+        build: .docker
+        ports:
+        - 8080:80
+        - 444:443
+        - 1111:80
+        working_dir: /data/project/
+        container_name: mercure_demo_web_dev
+        labels:
+            traefik.frontend.rule: "Host:mercure-demo.buzaud.local"
+        networks:
+        - proxy
+        expose:
+        - 80
+        - 443
+        stdin_open: true
+        tty: true
+        depends_on:
+        - db
+        links:
+        - db:db
+        restart: always
+        volumes:
+        - ~/websites/mercure-demo:/data/project/
+        environment:
+            DATABASE_URL: 'mysql://root:@db:3306/mercure'
+            APP_ENV: 'dev'
+            APP_DEBUG: 1
+            CORS_ALLOW_ORIGIN: '^https?://localhost(:[0-9]+)?$$'
+            APP_SECRET: '54761b69a2a027506f799affc97d5f9b'
+            MAILER_URL: 'null://localhost'
+
+    db:
+        image: mysql:5.7
+        container_name: mercure_demo_bdd_dev
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+        # Mapping de port pour se connecter à la db depuis l'extérieur du container
+        ports:
+        - 3306:3306
+        networks:
+        - proxy
+
+networks:
+    proxy:
+        external: true
+    default:
+        external:
+            name: proxy
+

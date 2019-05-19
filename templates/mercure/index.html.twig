@@ -1,0 +1,17 @@
+{% trans_default_domain 'mercure' %}
+{% extends 'layout.html.twig' %}
+{% block page_title 'Démo Mercure' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('mercure-demo') }}
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('mercure-demo') }}
+{% endblock %}
+
+
+{% block content %}
+    <h1>Démo Mercure</h1>
+{% endblock %}

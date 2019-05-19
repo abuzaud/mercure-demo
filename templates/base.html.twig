@@ -1,0 +1,28 @@
+{% trans_default_domain 'layout' %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Demo Mercure">
+    <meta name="keywords" content="Demo Mercure">
+    <meta name="application-name" content="Demo Mercure">
+    <meta name="author" content="antoine@buzaud.com">
+    <meta name="apple-mobile-web-app-title" content="Demo Mercure">
+{#    <link rel="icon" href="/favicon.ico">#}
+    <title>
+        {% block title %}
+            {% if block('page_title') is not empty %}
+                {% block page_title '' %} |
+            {% endif %}
+            {% block site_title 'Buzaud.com' %}
+        {% endblock %}
+    </title>
+    {% block stylesheets '' %}
+</head>
+<body class="{% block body_class '' %}">
+{% block body '' %}
+{% block javascripts '' %}
+</body>
+</html>

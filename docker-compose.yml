@@ -5,11 +5,10 @@ services:
         ports:
         - 8080:80
         - 444:443
-        - 1111:80
         working_dir: /data/project/
         container_name: mercure_demo_web_dev
         labels:
-            traefik.frontend.rule: "Host:mercure-demo.buzaud.local"
+            traefik.frontend.rule: "Host:mercure-demo.buzaud.com"
         networks:
         - proxy
         expose:

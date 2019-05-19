@@ -1,7 +1,7 @@
 FROM abuzaud/stretch_web:latest
 
-ADD config /etc/apache2/sites-available
-ADD config /etc/apache2/sites-enabled
+ADD config/apache /etc/apache2/sites-available
+ADD config/apache /etc/apache2/sites-enabled
 
 RUN mkdir -p /data/project
 RUN chmod -R 775 /data/project
